@@ -1,0 +1,58 @@
+# =========================================================================
+# GITIGNORE UNIVERSAL - PROYEK KELELEP (INTELLIJ, NETBEANS, VS CODE, ECLIPSE)
+# =========================================================================
+
+# 1. Output Hasil Compile & Build Utama (Maven/Java)
+/target/
+*.class
+*.war
+*.ear
+*.jar
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+.kotlin
+
+# 2. IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# 3. NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+nbactions.xml
+nb-configuration.xml
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# 4. VS Code
+.vscode/
+*.code-workspace
+.history/
+
+# 5. Eclipse
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# 6. File Sistem Operasi & Log (Linux, Windows, macOS)
+*.log
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# 7. Keamanan API Key (Biar Token AI Tidak Bocor ke GitHub!)
+*.properties
+!src/main/resources/config.properties.template
