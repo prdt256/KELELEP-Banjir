@@ -1,0 +1,10 @@
+# =========================================================================
+# TEMPLATE KONFIGURASI KELELEP
+# =========================================================================
+# Petunjuk:
+# 1. Salin/Rename file ini menjadi "config.properties" di folder yang sama.
+# 2. Dapatkan API Key Google Gemini gratis di https://aistudio.google.com/
+# 3. Tempel API Key Anda pada variabel GEMINI_API_KEY di bawah ini.
+# =========================================================================
+
+GEMINI_API_KEY=PASTE_API_KEY_ANDA_DI_SINI

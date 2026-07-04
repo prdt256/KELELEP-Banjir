@@ -62,8 +62,8 @@ Aplikasi ini dikelola dengan **Apache Maven**, sehingga Anda tidak perlu mengund
 
 ### 2. Persiapan API Key
 Agar fitur AI berfungsi, Anda memerlukan API Key gratis dari Google AI Studio.
-- Buka file `src/main/resources/config.properties`.
-- Ganti teks bawaan dengan API key Anda:
+- Duplikat/Salin file `src/main/resources/config.properties.template` menjadi **`config.properties`** di folder yang sama.
+- Buka file `config.properties` baru tersebut, lalu tempel API key Anda:
   ```properties
   GEMINI_API_KEY=AIzaSy... (paste key Anda di sini)
   ```
