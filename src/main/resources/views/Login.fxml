@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane prefHeight="720.0" prefWidth="1280.0" styleClass="bg-dark" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kelelep.controller.LoginController">
+
+    <VBox alignment="CENTER" maxHeight="450.0" maxWidth="400.0" spacing="20.0" styleClass="bg-panel-bordered">
+        <padding>
+            <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+        </padding>
+
+        <VBox spacing="5.0" alignment="CENTER_LEFT" prefWidth="320.0">
+            <Label styleClass="title-large" text="KELELEP" />
+            <Label styleClass="subtitle" text="Sign in to your account" />
+        </VBox>
+
+        <VBox spacing="8.0" prefWidth="320.0">
+            <Label styleClass="label-field" text="Username" />
+            <TextField fx:id="usernameField" promptText="admin" styleClass="input-dark" />
+        </VBox>
+
+        <VBox spacing="8.0" prefWidth="320.0">
+            <Label styleClass="label-field" text="Password" />
+            <PasswordField fx:id="passwordField" promptText="••••••••" styleClass="input-dark" />
+        </VBox>
+
+        <Label fx:id="errorLabel" styleClass="label-error" text="" wrapText="true" />
+
+        <Button onAction="#onSignIn" prefHeight="45.0" prefWidth="320.0" styleClass="btn-primary" text="Sign In →" />
+
+        <Label styleClass="label-protocol" text="INDUSTRIAL PROTOCOL" />
+    </VBox>
+
+    <Label styleClass="label-version" text="KELELEP v1.0" StackPane.alignment="BOTTOM_RIGHT">
+        <StackPane.margin>
+            <Insets bottom="20.0" right="30.0" />
+        </StackPane.margin>
+    </Label>
+</StackPane>

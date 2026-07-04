@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="720.0" prefWidth="1280.0" styleClass="bg-dark" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kelelep.controller.DashboardController">
+
+    <left>
+        <VBox prefWidth="360.0" spacing="15.0" styleClass="bg-panel" BorderPane.alignment="CENTER">
+            <padding><Insets bottom="20.0" left="20.0" right="20.0" top="20.0" /></padding>
+            <Label styleClass="title-panel" text="URBAN INFRASTRUCTURE" />
+            <TableView fx:id="assetTable" prefHeight="320.0" prefWidth="320.0">
+                <columns>
+                    <TableColumn fx:id="colId" prefWidth="80.0" text="ID" />
+                    <TableColumn fx:id="colType" prefWidth="100.0" text="TYPE" />
+                    <TableColumn fx:id="colCapacity" prefWidth="70.0" text="CAPACITY" />
+                    <TableColumn fx:id="colVolume" prefWidth="70.0" text="VOLUME" />
+                </columns>
+            </TableView>
+            <Label styleClass="text-muted" text="ASSET MANAGEMENT" />
+            <TextField fx:id="inputId" promptText="e.g. CH-003" styleClass="input-dark" />
+            <ComboBox fx:id="inputType" prefWidth="320.0" promptText="Select Type..." />
+            <TextField fx:id="inputCapacity" promptText="Max Capacity (m³)" styleClass="input-dark" />
+            <HBox spacing="10.0">
+                <Button onAction="#onAddAsset" prefWidth="155.0" styleClass="btn-primary" text="Add New Channel" />
+                <Button onAction="#onDeleteAsset" prefWidth="155.0" styleClass="btn-danger" text="Delete Asset" />
+            </HBox>
+        </VBox>
+    </left>
+
+    <center>
+        <VBox alignment="TOP_CENTER" prefWidth="550.0" spacing="15.0" styleClass="bg-panel" BorderPane.alignment="CENTER">
+            <padding><Insets bottom="20.0" left="20.0" right="20.0" top="20.0" /></padding>
+            <BorderPane.margin><Insets left="15.0" right="15.0" /></BorderPane.margin>
+
+            <Label styleClass="title-section" text="SIMULATION CONSOLE" />
+            <Label fx:id="statusIndicator" styleClass="status-safe" text="SAFE" />
+
+            <TabPane VBox.vgrow="ALWAYS" styleClass="dashboard-tab-pane" tabClosingPolicy="UNAVAILABLE">
+                <!-- Tab 1: Controls & Event Logs -->
+                <Tab text="Controls &amp; Event Logs">
+                    <VBox spacing="20.0">
+                        <padding><Insets top="20.0" bottom="10.0" left="10.0" right="10.0" /></padding>
+                        <VBox spacing="10.0">
+                            <HBox alignment="CENTER_LEFT">
+                                <Label styleClass="text-muted" text="RAIN INTENSITY" />
+                                <Region HBox.hgrow="ALWAYS" />
+                                <Label fx:id="rainValueLabel" styleClass="label-rain-value" text="0 mm/h" />
+                            </HBox>
+                            <Slider fx:id="rainSlider" blockIncrement="5.0" max="150.0" value="0.0" />
+                        </VBox>
+
+                        <HBox alignment="CENTER" spacing="20.0">
+                            <Button fx:id="btnStart" onAction="#onStartSimulation" prefHeight="45.0" prefWidth="200.0" styleClass="btn-start" text="▶ START SIMULATION" />
+                            <Button fx:id="btnStop" onAction="#onStopSimulation" prefHeight="45.0" prefWidth="200.0" styleClass="btn-stop" text="■ STOP" />
+                        </HBox>
+
+                        <Label styleClass="text-muted" text="SYSTEM LOG TERMINAL" />
+                        <TextArea fx:id="simulationLogArea" editable="false" prefHeight="250.0" styleClass="text-area-dark" text="System awaiting simulation initialization..." wrapText="true" VBox.vgrow="ALWAYS" />
+                    </VBox>
+                </Tab>
+
+                <!-- Tab 2: Live Hydraulic Chart -->
+                <Tab text="Live Hydraulic Chart">
+                    <VBox alignment="CENTER" spacing="10.0">
+                        <padding><Insets top="15.0" bottom="15.0" left="10.0" right="10.0" /></padding>
+                        <Label styleClass="text-muted" text="REAL-TIME VOLUME VS CAPACITY" />
+                        <BarChart fx:id="hydraulicChart" animated="false" legendVisible="true" VBox.vgrow="ALWAYS">
+                            <xAxis>
+                                <CategoryAxis side="BOTTOM" tickLabelFill="WHITE" />
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis side="LEFT" tickLabelFill="WHITE" />
+                            </yAxis>
+                        </BarChart>
+                    </VBox>
+                </Tab>
+            </TabPane>
+        </VBox>
+    </center>
+
+    <right>
+        <VBox prefWidth="350.0" spacing="10.0" styleClass="bg-panel-accent" BorderPane.alignment="CENTER">
+            <padding><Insets bottom="15.0" left="15.0" right="15.0" top="15.0" /></padding>
+
+            <Label styleClass="title-accent" text="✨ AI MITIGATION ADVISOR" />
+            <Label fx:id="aiStatusLabel" styleClass="label-ai-status" text="● Menunggu simulasi..." />
+
+            <!-- Layar Chat WA-style -->
+            <ScrollPane fx:id="chatScrollPane" fitToWidth="true" hbarPolicy="NEVER" styleClass="chat-scroll-pane" vbarPolicy="ALWAYS" VBox.vgrow="ALWAYS">
+                <content>
+                    <VBox fx:id="chatMessageContainer" spacing="15.0" styleClass="chat-container">
+                        <padding><Insets bottom="10.0" left="10.0" right="10.0" top="10.0" /></padding>
+                    </VBox>
+                </content>
+            </ScrollPane>
+
+            <!-- Area Chat Interaktif -->
+            <Label styleClass="text-muted-small" text="TANYA KELELEP AI:" />
+            <HBox spacing="8.0" alignment="CENTER_LEFT">
+                <TextField fx:id="chatInputField" promptText="Ketik pertanyaan Anda..." styleClass="input-dark" HBox.hgrow="ALWAYS" onAction="#onSendChat" />
+                <Button fx:id="btnSendChat" onAction="#onSendChat" prefHeight="35.0" prefWidth="60.0" styleClass="btn-send-chat" text="Kirim" />
+            </HBox>
+
+            <Button onAction="#onGeneratePdfReport" prefHeight="40.0" prefWidth="320.0" styleClass="btn-outline-accent" text="Generate Full Report (.PDF)" />
+        </VBox>
+    </right>
+
+    <padding><Insets bottom="20.0" left="20.0" right="20.0" top="20.0" /></padding>
+</BorderPane>

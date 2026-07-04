@@ -1,21 +1,26 @@
 package com.kelelep;
 
-import com.kelelep.controller.SimulationEngine;
-import com.kelelep.model.ConcretePipe;
-import com.kelelep.model.AbsorptionArea;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import java.io.IOException;
 
-public class Main {
+public class Main extends Application {
+    @Override
+    public void start(Stage stage) throws IOException {
+        // Memuat file desain FXML
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/views/Login.fxml"));
+
+        // Memasang FXML ke dalam Scene berukuran 1280x720
+        Scene scene = new Scene(fxmlLoader.load(), 1280, 720);
+
+        stage.setTitle("KELELEP SIMULATOR v1.0");
+        stage.setScene(scene);
+        stage.show();
+    }
+
     public static void main(String[] args) {
-        SimulationEngine engine = new SimulationEngine();
-
-        // Menginisialisasi objek-objek infrastruktur kota (Polymorphism & Inheritance)
-        engine.addInfrastructure(new ConcretePipe("PIPA-GORONG-01", 100.0, 2.5)); // Kapasitas 100 L
-        engine.addInfrastructure(new AbsorptionArea("TAMAN-KOTA-A", 150.0, 1.2)); // Kapasitas 150 L
-
-        // Siklus 1: Hujan normal (20 mm/jam) -> Semua infrastruktur harusnya aman
-        engine.runSimulationCycle(20.0);
-
-        // Siklus 2: Terjadi hujan ekstrem (120 mm/jam) -> Memaksa terjadinya KelelepOverflowException
-        engine.runSimulationCycle(120.0);
+        launch();
     }
 }

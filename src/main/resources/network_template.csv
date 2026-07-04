@@ -1,0 +1,6 @@
+id,type,maxCapacity,attributeValue
+CH-01,Concrete Pipe,1500,15.5
+CH-02,Concrete Pipe,800,10.0
+CH-03,Concrete Pipe,2000,20.0
+RES-01,Absorption Area,10000,85.0
+RES-02,Absorption Area,5000,60.0
